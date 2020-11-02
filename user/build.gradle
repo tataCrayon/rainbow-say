@@ -4,6 +4,12 @@ plugins {
     id 'java'
 }
 
+
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
 group = 'pers.crayon'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '1.8'
@@ -14,20 +20,98 @@ configurations {
     }
 }
 
+/*
+自定义属性，可用于在其他文件放置版本信息
+version.gradle
+ */
+ext{
+    set('springCloudAlibabaVersion', "2.1.0.RELEASE")
+    set('springCloudVersion', "Greenwich.SR5")
+}
+
 repositories {
+    mavenLocal()
+    maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
+    maven { url 'http://maven.aliyun.com/nexus/content/repositories/google' }
+    maven { url 'http://maven.aliyun.com/nexus/content/repositories/jcenter' }
+    maven { url 'https://repo.spring.io/milestone' }
     mavenCentral()
 }
 
 dependencies {
-    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+
+    /*
+    web基础依赖、健康监控、web测试
+     */
     implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+    testImplementation('org.springframework.boot:spring-boot-starter-test') {
+        exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+    }
+
+    /*
+    数据库连接、应用
+    data rest将repository 自动输出为 Rest资源
+     */
+    implementation 'org.apache.commons:commons-pool2:2.8.0'
+
+    implementation 'mysql:mysql-connector-java'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-data-rest'
+
+    implementation 'org.springframework.boot:spring-boot-starter-data-redis'
+    implementation 'org.springframework.session:spring-session-data-redis'
+    // jdesi客户端
+    compile group: 'redis.clients', name: 'jedis', version: '3.3.0'
+//    implementation 'redis.clients.jedis:3.3.0'
+    /*
+     工具类
+     */
+    implementation 'cn.hutool:hutool-all:5.4.1'
+
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation('org.springframework.boot:spring-boot-starter-test') {
         exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
     }
+    /*
+    Jwt生成token加密登录
+    fastjson Json处理工具
+    lang3 各种 类型文件的 Utils处理包
+    httpClient连接调用第三接口
+    poi来处理excel数据
+     */
+    implementation "junit:junit:4.13"
+    implementation 'io.jsonwebtoken:jjwt:0.9.1'
+    implementation 'com.alibaba:fastjson:1.2.62'
+    implementation 'org.apache.commons:commons-lang3:3.9'
+    implementation 'org.apache.httpcomponents:httpclient:4.5.10'
+    implementation 'org.apache.poi:poi:4.1.1'
+    compile group: 'net.sdruskat', name: 'net.sdruskat.fragment.sun.misc', version: '1.0.0'
+
+
+
+    /*
+    服务注册治理 nacos
+     */
+    implementation 'com.alibaba.cloud:spring-cloud-starter-alibaba-nacos-config'
+    implementation 'com.alibaba.cloud:spring-cloud-starter-alibaba-nacos-discovery'
+
+    /*
+    Swagger RESTFUL接口的文档在线自动生成+功能测试功能软件
+    数据校验
+     */
+    compile group: 'io.springfox', name: 'springfox-swagger2', version: '3.0.0'
+    compile group: 'io.springfox', name: 'springfox-swagger-ui', version: '3.0.0'
+    compile group: 'javax.validation', name: 'validation-api', version: '2.0.1.Final'
+
+
+
 }
 
 test {
     useJUnitPlatform()
 }
+
+
+test.enabled = false

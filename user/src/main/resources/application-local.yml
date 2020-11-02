@@ -1,0 +1,19 @@
+server:
+  port: 100001
+spring:
+
+  # 定义匹配静态资源路径
+  mvc:
+    static-path-pattern: /**
+  # 定义静态资源位置
+  #  resources:
+  #    static-locations:
+  #      classpath: /META-INF/resources/,/resources/,/static/,/public/
+  #当遇到同样名字的时候，是否允许覆盖注册
+  main:
+    allow-bean-definition-overriding: true
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/homepage?useUnicode=true&characterEncoding=UTF8&serverTimezone=GMT%2B8
+    username: root
+    password: root
