@@ -13,4 +13,7 @@ public interface AdmittanceService {
     String addAdmittance(String question);
 
     String delAdmittance(String question);
+
+    //设置用户在线状态
+    String setOnline(String param);
 }

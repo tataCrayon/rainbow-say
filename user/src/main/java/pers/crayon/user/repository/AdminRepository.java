@@ -9,10 +9,10 @@ import pers.crayon.user.model.pojo.Admin;
  * @version 1.0
  * @date 2020/10/9 10:48
  * @since JDK 1.8
- *
+ * <p>
  * 继承JPA系列接口实现CURD ，继承JpaSpecificationExecutor 实现复杂查询
  */
 
 public interface AdminRepository extends JpaRepository<Admin, Long>, JpaSpecificationExecutor<Admin> {
-
+    Admin getAdminByName(String name);
 }

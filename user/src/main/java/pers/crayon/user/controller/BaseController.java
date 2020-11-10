@@ -12,13 +12,14 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 /**
- * <p>
- *
  * @author tataCrayon
  * @version 1.0
  * @Scope默认单例模式，可用于调整作用域 </p>
  * @date 2020/9/23 11:45
  * @since JDK 1.8
+ * <p>
+ *     使用JSON格式返回方法
+ * </p>
  */
 @Slf4j
 @Scope

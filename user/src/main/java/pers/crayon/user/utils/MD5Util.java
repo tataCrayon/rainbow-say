@@ -15,7 +15,9 @@ import java.security.NoSuchAlgorithmException;
  * @since JDK 1.8
  * <p>
  * MD5加密方法
- * </p>
+ * <p>
+ * 工具类都是静态字段和函数
+ * 通过定义私有构造参数，屏蔽默认公有构造，避免没必要的实例化
  */
 public class MD5Util {
     //@Autowired

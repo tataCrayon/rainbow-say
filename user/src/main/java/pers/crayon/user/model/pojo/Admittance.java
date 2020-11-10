@@ -27,4 +27,5 @@ public class Admittance extends BaseModel implements Serializable {
     private String answer;
     private Long createAdminId;
 
+
 }

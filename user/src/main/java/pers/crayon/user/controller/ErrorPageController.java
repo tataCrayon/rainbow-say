@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * @since JDK 1.8
  * <p>
  * 处理 404 不存在路径
+ * </p>
  */
 //@Controller
 public class ErrorPageController implements ErrorController {

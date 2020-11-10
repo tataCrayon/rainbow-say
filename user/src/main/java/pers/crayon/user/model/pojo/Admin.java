@@ -1,5 +1,6 @@
 package pers.crayon.user.model.pojo;
 
+import io.swagger.annotations.Api;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
@@ -21,12 +22,19 @@ import java.util.Date;
 @Data
 @ToString(callSuper = true)
 @EqualsAndHashCode(callSuper = true)
+@Api(tags = "管理员实例说明")
 public class Admin extends BaseModel {
 
     /**
      * 管理员名称
      */
     private String name;
+
+    /**
+     * 管理员帐号密码
+     */
+    private String password;
+
     /**
      * 管理员电话
      */

@@ -1,6 +1,7 @@
 package pers.crayon.user.exception;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 /**
  * @author tataCrayon
@@ -9,6 +10,7 @@ import lombok.Data;
  * @since JDK 1.8
  */
 @Data
+@EqualsAndHashCode(callSuper = false)
 public class ValidateException extends RuntimeException {
     private Integer validateStatus;
 

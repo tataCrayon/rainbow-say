@@ -32,7 +32,6 @@ public class RedirectFilter implements Filter {
     Post请求可以借助 postForObject/postForEntity 将请求头添加至HttpEntity
      */
 
-
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
         HttpServletRequest request = (HttpServletRequest) servletRequest;
@@ -40,10 +39,8 @@ public class RedirectFilter implements Filter {
 
         String origin = request.getHeader("Origin");
         log.info("Origin:{}", origin);
-//        if(StringUtils.isEmpty(origin)) {
-//            origin = req.getHeader("Referer");
-//        }
         if (StringUtils.isEmpty(origin)) {
+            //origin = req.getHeader("Referer");
             response.addHeader("Access-Control-Allow-Origin", "*");
         } else {
             //跨域带cookie的时候，origin必须是全匹配，不能使用*
@@ -54,9 +51,7 @@ public class RedirectFilter implements Filter {
         response.addHeader("Access-Control-Max-Age", "3600");
         // enable cookie
         response.addHeader("Access-Control-Allow-Credentials", "true");
-
         filterChain.doFilter(request, response);
-
         //RequestWrapper request=new RequestWrapper((HttpServletRequest) servletRequest);
         //request.addHeader("header","瓜田李下");
         //
@@ -77,7 +72,6 @@ public class RedirectFilter implements Filter {
         log.info("get with selfDefine header by Interceptor: {}", response);
     }
     */
-
 
     @Override
     public void destroy() {

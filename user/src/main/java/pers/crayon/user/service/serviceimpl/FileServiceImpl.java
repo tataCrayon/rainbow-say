@@ -2,7 +2,7 @@ package pers.crayon.user.service.serviceimpl;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-import pers.tatacrayon.homepage.service.FileService;
+import pers.crayon.user.service.FileService;
 
 /**
  * @author tataCrayon

@@ -20,12 +20,17 @@ import java.util.concurrent.TimeUnit;
 @Service
 @Slf4j
 public class RedisCacheService {
+
     @Autowired
     private RedisTemplate redisTemplate;
 
-    @Autowired(
-            required = false
-    )
+    /**
+     * 对keySerializer进行初始化
+     * 防止 hGet方法获取不到数据
+     *
+     * @param redisTemplate
+     */
+    @Autowired(required = false)
     public void setRedisTemplate(RedisTemplate redisTemplate) {
         RedisSerializer stringSerializer = new StringRedisSerializer();
         redisTemplate.setKeySerializer(stringSerializer);
@@ -35,6 +40,13 @@ public class RedisCacheService {
         this.redisTemplate = redisTemplate;
     }
 
+    /**
+     * 设置key的过期时间，单位为秒s
+     *
+     * @param key
+     * @param time
+     * @return
+     */
     public boolean expire(String key, long time) {
         try {
             if (time > 0L) {
@@ -48,10 +60,22 @@ public class RedisCacheService {
         }
     }
 
+    /**
+     * 获取key的有效时间
+     *
+     * @param key
+     * @return
+     */
     public long getExpire(String key) {
         return this.redisTemplate.getExpire(key, TimeUnit.SECONDS);
     }
 
+    /**
+     * 判断是否存在key
+     *
+     * @param key
+     * @return
+     */
     public boolean hasKey(String key) {
         try {
             return this.redisTemplate.hasKey(key);
@@ -61,6 +85,11 @@ public class RedisCacheService {
         }
     }
 
+    /**
+     * 删除一些key
+     *
+     * @param key
+     */
     public void del(String... key) {
         if (key != null && key.length > 0) {
             if (key.length == 1) {
@@ -72,10 +101,21 @@ public class RedisCacheService {
 
     }
 
+    /**
+     * 删除指定key
+     *
+     * @param pattern
+     */
     public void delAll(String pattern) {
         this.redisTemplate.delete(this.redisTemplate.keys(pattern));
     }
 
+    /**
+     * 获取指定key-values
+     *
+     * @param key
+     * @return
+     */
     public Object get(String key) {
         try {
             return this.redisTemplate.opsForValue().get(key);
@@ -85,6 +125,12 @@ public class RedisCacheService {
         }
     }
 
+    /**
+     * 获取所有
+     *
+     * @param pattern
+     * @return
+     */
     public Set<Object> getAll(String pattern) {
         Set<Object> values = new HashSet();
         Set<String> keys = this.redisTemplate.keys(pattern);
@@ -98,6 +144,13 @@ public class RedisCacheService {
         return values;
     }
 
+    /**
+     * key-value 存储
+     *
+     * @param key
+     * @param value
+     * @return
+     */
     public boolean set(String key, Object value) {
         try {
             this.redisTemplate.opsForValue().set(key, value);
@@ -108,6 +161,12 @@ public class RedisCacheService {
         }
     }
 
+    /**
+     * @param key
+     * @param value
+     * @param time
+     * @return
+     */
     public boolean set(String key, Object value, long time) {
         try {
             if (time > 0L) {
@@ -238,13 +297,18 @@ public class RedisCacheService {
         }
     }
 
+    /**
+     * @param key
+     * @param time
+     * @param values
+     * @return
+     */
     public long sSetAndTime(String key, long time, Object... values) {
         try {
             Long count = this.redisTemplate.opsForSet().add(key, values);
             if (time > 0L) {
                 this.expire(key, time);
             }
-
             return count;
         } catch (Exception var6) {
             log.error(var6.getMessage(), var6);

@@ -12,6 +12,8 @@ import pers.crayon.user.repository.AdmittanceRepository;
  * @version 1.0
  * @date 2020/10/19 16:08
  * @since JDK 1.8
+ *
+ * <p></p>
  */
 @Slf4j
 @Service
@@ -63,6 +65,5 @@ public class RedirectService {
         }
         return "验证通过";
     }
-
 
 }
