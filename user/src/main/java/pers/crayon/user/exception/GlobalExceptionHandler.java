@@ -3,7 +3,7 @@ package pers.crayon.user.exception;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
-import pers.crayon.user.enums.ResponseCodeEnum;
+import pers.crayon.user.constant.enums.ResponseCodeEnum;
 import pers.crayon.user.model.dto.Result;
 
 /**

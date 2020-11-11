@@ -1,4 +1,4 @@
-package pers.crayon.user.enums;
+package pers.crayon.user.constant.enums;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

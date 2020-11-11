@@ -4,7 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.poi.ss.formula.functions.T;
 import org.springframework.context.annotation.Scope;
 import org.springframework.data.domain.Page;
-import pers.crayon.user.enums.ResponseCodeEnum;
+import pers.crayon.user.constant.enums.ResponseCodeEnum;
 import pers.crayon.user.model.dto.PageResult;
 import pers.crayon.user.model.dto.Result;
 
