@@ -95,6 +95,8 @@ dependencies {
 
     /*
     服务注册治理 nacos
+    discover注册中心客户端
+    config配置中心客户端
      */
 //    compile group: 'com.alibaba.cloud', name: 'spring-cloud-starter-alibaba-nacos-config', version: '2.2.3.RELEASE'
 //    compile group: 'com.alibaba.cloud', name: 'spring-cloud-starter-alibaba-nacos-discovery', version: '2.2.3.RELEASE'
