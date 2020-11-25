@@ -1,0 +1,24 @@
+<!-- 加载配置文件 -->
+<context:property-placeholder location="classpath:mail.properties"/>
+<bean id="mailMessage" class="org.springframework.mail.SimpleMailMessage">
+<property name="from">
+    <value>${mail.from}</value><!-- 发信人 -->
+</property>
+</bean>
+        <!-- 申明JavaMailSenderImpl对象 -->
+<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+<property name="defaultEncoding" value="UTF-8"/>
+<property name="host" value="${mail.host}"/><!-- 服务器主机名 -->
+<property name="username" value="${mail.username}"/><!-- 用户名 -->
+<property name="password" value="${mail.password}"/><!-- 授权码 -->
+<property name="javaMailProperties">
+    <props>
+        <!-- 设置认证开关 -->
+        <prop key="mail.smtp.auth">true</prop>
+        <!-- 启动调试开关 -->
+        <prop key="mail.debug">true</prop>
+        <!-- 设置发送延时 -->
+        <prop key="mail.smtp.timeout">0</prop>
+    </props>
+</property>
+</bean>
