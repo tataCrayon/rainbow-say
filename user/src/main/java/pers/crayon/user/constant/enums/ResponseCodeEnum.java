@@ -15,7 +15,13 @@ public enum ResponseCodeEnum {
 
     OK(200, "OK"),
     SYSTEM_EXCEPTION(70, "系统异常"), USER_OPERATE_ERROR(71, "用户操作错误"),
-    USERNAME_OR_PWD_ERROR(72, "用户名或密码错误"), TOKEN_INVALID(73, "登录令牌无效"), HEALTH_CARD_EXCEPTION(74, "微信健康卡服务异常");
+    USERNAME_OR_PWD_ERROR(72, "用户名或密码错误"), TOKEN_INVALID(73, "登录令牌无效"),
+    HEALTH_CARD_EXCEPTION(74, "微信健康卡服务异常"),
+    MAIL_AUTHENTICATION_FAILURE(75, "邮件认证失败"),
+    MESSAGE_SEND_FAILURE(76, "发送消息失败"),
+    MESSAGE_PARSE_FAILURE(77, "消息解析失败"),
+    CONFIG_URISYNTAX(78, "出现URISyntax异常:可能配置文件不对"),
+    CONFIGE_IO(79, "出现IO异常:可能配置文件找不到");
 
     private int code;
     private String desc;
