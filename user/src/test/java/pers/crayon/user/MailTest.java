@@ -29,7 +29,7 @@ public class MailTest {
     public void send() {
         SimpleDateFormat sdf = new SimpleDateFormat();
         Date date = new Date();
-        mailMessage.setTo("roamonmoon@qq.com");
+        mailMessage.setTo("910368916@qq.com");
         mailMessage.setSubject("邮件测试");
         mailMessage.setText("测试时间：" + sdf.format(date));
         mailSender.send(mailMessage);

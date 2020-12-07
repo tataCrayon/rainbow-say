@@ -10,6 +10,8 @@ import java.util.List;
  * @version 1.0
  * @date 2020/11/23 9:51
  * @since JDK 1.8
+ *
+ * 忘记是干什么的了，功用和 PageResult 重复了
  */
 @Data
 public class PageBean<T> {

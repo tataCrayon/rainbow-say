@@ -1,8 +1,12 @@
 package pers.crayon.user.controller;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import pers.crayon.user.model.dto.Result;
 
 /**
  * @author tataCrayon
@@ -17,7 +21,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Slf4j
 @Controller
 @RequestMapping("/show")
-public class ExhibitionController {
+@Api("展览区接口")
+public class ExhibitionController extends BaseController {
 
+    @GetMapping
+    @ApiOperation(value = "hello 测试", notes = "暂时用于测试方法是否会在swagger文档显示")
+    public Result sayHello() {
+        return success("hello swagger");
+    }
 
 }

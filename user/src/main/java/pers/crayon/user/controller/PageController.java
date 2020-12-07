@@ -37,12 +37,17 @@ public class PageController extends BaseController {
     @Autowired
     private AdminService adminService;
 
+    @PostMapping("try")
+    public Result trySwagger() {
+        return success("文档测试");
+    }
+
+
     @RequestMapping()
     public String showLogin() {
         return "login";
     }
 
-    //http://localhost:10001/user/login
     @PostMapping("/login")
     public String login(@RequestBody AdminDto adminDto) {
         String html = adminService.loginAdmin(adminDto);

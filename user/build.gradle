@@ -106,8 +106,13 @@ dependencies {
     /*
     Swagger RESTFUL接口的文档在线自动生成+功能测试功能软件
     数据校验
-     */
+    swagger2
     compile group: 'io.springfox', name: 'springfox-swagger2', version: '3.0.0'
+    swagger3
+    使用springfox-boot-starter来引入swagger3
+     */
+
+    compile group: 'io.springfox', name: 'springfox-boot-starter', version: '3.0.0'
     compile group: 'io.springfox', name: 'springfox-swagger-ui', version: '3.0.0'
     compile group: 'javax.validation', name: 'validation-api', version: '2.0.1.Final'
 
@@ -116,7 +121,10 @@ dependencies {
      */
     compile group: 'org.springframework', name: 'spring-context-support', version: '5.3.1'
     compile group: 'javax.mail', name: 'mail', version: '1.4.7'
-
+    /*
+    oracle后续手动导包再来
+     */
+//    compile group: 'oracle', name: 'oracle-jdbc', version: '12.2.0.1'
 }
 
 test {

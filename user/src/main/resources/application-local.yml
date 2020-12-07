@@ -2,8 +2,8 @@ server:
   port: 10001
   #  配置上下文（项目路径），改变项目URL资源定位
   servlet:
-    context-path: /user
-#  http://localhost:10001/user/
+    context-path: /roam
+#  http://localhost:10001/roam/
 spring:
   # 定义匹配静态资源路径
   mvc:
@@ -20,6 +20,11 @@ spring:
     url: jdbc:mysql://localhost:3306/homepage?useUnicode=true&characterEncoding=UTF8&serverTimezone=GMT%2B8
     username: root
     password: root
+  #  datasource:
+  #    jdbc-url: jdbc:oracle:thin:@//192.168.140.22:1521/orcl
+  #    username: zloper
+  #    password: his
+  #    driver-class-name:
   redis:
     port: 6379
     # Redis服务器地址
@@ -67,6 +72,13 @@ spring:
 #      lockTimeOut: 10
 ##    redis在yml文件的配置
 # Redis服务器连接端口
+
+
+# 设置 swagger-ui文档
+springfox:
+  documentation:
+    swagger-ui:
+      enabled: true
 
 
 #定义有封装化类
