@@ -24,6 +24,5 @@
 * @ApiImplicitParam：一个请求参数
 * @ApiImplicitParams：多个请求参数
 * @since JDK 1.8
-* <p>
 * 应用的时候 在类上配置@Api(tags = {"登录日志管理"})
 * 方法上配置@ApiOperation(value = "条件查询")

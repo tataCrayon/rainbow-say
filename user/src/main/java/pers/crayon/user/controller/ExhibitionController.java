@@ -21,7 +21,7 @@ import pers.crayon.user.model.dto.Result;
 @Slf4j
 @Controller
 @RequestMapping("/show")
-@Api("展览区接口")
+@Api(tags = "ExhibitionController", description = "展览区接口")
 public class ExhibitionController extends BaseController {
 
     @GetMapping

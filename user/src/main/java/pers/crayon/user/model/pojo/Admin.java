@@ -18,12 +18,12 @@ import java.util.Date;
  */
 // @Date默认仅使用该类中定义的属性且不调用父类的方法 包含 @EqualsAndHashCode(callSuper=true)
 // @可通过callSuper=true解决上一点问题。让其生成的方法中调用父类的方法。
+@Data
 @Entity
 @Table(name = "admin")
-@Data
 @ToString(callSuper = true)
 @EqualsAndHashCode(callSuper = true)
-@ApiModel(value = "管理员", description = "系统暂定唯一用户")
+@ApiModel(value = "Admin管理员", description = "系统暂定唯一用户")
 public class Admin extends BaseModel {
 
     @ApiModelProperty("管理员名称")

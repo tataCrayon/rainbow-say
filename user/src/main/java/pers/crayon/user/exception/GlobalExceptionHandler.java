@@ -32,4 +32,10 @@ public class GlobalExceptionHandler {
         log.error("UserOperateException:{}", ex);
         return new Result(ResponseCodeEnum.USER_OPERATE_ERROR, ex.getMessage());
     }
+
+    @ExceptionHandler(LoginException.class)
+    public Result LoginExceptionHandler(LoginException ex) {
+        log.error("LoginException:{}", ex);
+        return new Result(ResponseCodeEnum.FAIL_AUTHORIZATION, ex.getMessage());
+    }
 }

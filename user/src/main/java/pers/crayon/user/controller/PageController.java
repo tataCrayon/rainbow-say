@@ -1,6 +1,8 @@
 package pers.crayon.user.controller;
 
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -28,7 +30,7 @@ import pers.crayon.user.service.RedirectService;
 @Slf4j
 @Controller
 @RequestMapping("/")
-@Api(tags = {"页面跳转管理"})
+@Api(tags = "PageController", description = "暂未分类的综合页面控制层，页面跳转管理")
 public class PageController extends BaseController {
 
     @Autowired
@@ -42,13 +44,7 @@ public class PageController extends BaseController {
         return success("文档测试");
     }
 
-
-    @RequestMapping()
-    public String showLogin() {
-        return "login";
-    }
-
-    @PostMapping("/login")
+    @PostMapping("/admin-login")
     public String login(@RequestBody AdminDto adminDto) {
         String html = adminService.loginAdmin(adminDto);
         return html;
@@ -67,9 +63,12 @@ public class PageController extends BaseController {
      * @return
      * @RequestBody @RequestPram 用于 封装为 dto 和 msg的情况
      */
+    @ApiOperation(value = "", notes = "")
     @PostMapping("/admittance")
     public @ResponseBody
-    Result validateForRedirectService(@RequestBody Admittance admittance) throws ValidateException {
+    Result validateForRedirectService(@RequestBody
+                                      @ApiParam(name = "校验问题实例对象", value = "Admittance admittance")
+                                              Admittance admittance) throws ValidateException {
         String result = null;
         result = reDirectService.validateAdmittance(admittance);
         return success(result);

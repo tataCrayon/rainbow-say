@@ -121,6 +121,21 @@ dependencies {
      */
     compile group: 'org.springframework', name: 'spring-context-support', version: '5.3.1'
     compile group: 'javax.mail', name: 'mail', version: '1.4.7'
+
+    /*
+    shiro权限校验
+     */
+    compile group: 'org.apache.shiro', name: 'shiro-core', version: '1.7.0'
+    compile group: 'org.apache.shiro', name: 'shiro-spring', version: '1.7.0'
+    compile group: 'org.apache.shiro', name: 'shiro-web', version: '1.7.0'
+
+    /*
+
+    aspectjweaver 支持切入点表达式等等
+     */
+    runtime group: 'org.aspectj', name: 'aspectjweaver', version: '1.9.6'
+
+
     /*
     oracle后续手动导包再来
      */
