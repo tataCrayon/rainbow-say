@@ -1,5 +1,7 @@
 package pers.crayon.user.controller;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -28,6 +30,7 @@ import java.util.Map;
 @Slf4j
 @Controller
 @RequestMapping("/file")
+@Api(tags = "FileController", description = "关于文件、资源等控制")
 public class FileController {
 
     @Value("${file.uploadDefaultPath}")
@@ -40,11 +43,13 @@ public class FileController {
      * @return
      */
     @RequestMapping("file")
+    @ApiOperation(value = "文件上传页面", notes = "返回文件上传页面，等前后端分离的时候可以不用这个接口了")
     public String file() {
         return "fileupload";
     }
 
     @PostMapping("/upload1")
+    @ApiOperation(value = "文件上传接口", notes = "将MultipartFile文件写入指定接口")
     @ResponseBody
     public Map<String, String> upload1(@RequestParam("file") MultipartFile file) throws IOException {
         log.info("[文件类型] - [{}]", file.getContentType());
@@ -60,6 +65,7 @@ public class FileController {
     }
 
     @PostMapping("/upload2")
+    @ApiOperation(value = "文件上传接口", notes = "将MultipartFile文件写入指定接口")
     @ResponseBody
     public List<Map<String, String>> upload2(@RequestParam("file") MultipartFile[] files) throws IOException {
         if (files == null || files.length == 0) {
@@ -79,6 +85,7 @@ public class FileController {
     }
 
     @PostMapping("/upload3")
+    @ApiOperation(value = "base64文件上传接口", notes = "将文件写入指定路径")
     @ResponseBody
     public void upload2(String base64) throws IOException {
         // TODO BASE64 方式的 格式和名字需要自己控制（如 png 图片编码后前缀就会是 data:image/png;base64,）

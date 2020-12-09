@@ -95,6 +95,8 @@ dependencies {
 
     /*
     服务注册治理 nacos
+    discover注册中心客户端
+    config配置中心客户端
      */
 //    compile group: 'com.alibaba.cloud', name: 'spring-cloud-starter-alibaba-nacos-config', version: '2.2.3.RELEASE'
 //    compile group: 'com.alibaba.cloud', name: 'spring-cloud-starter-alibaba-nacos-discovery', version: '2.2.3.RELEASE'
@@ -104,11 +106,43 @@ dependencies {
     /*
     Swagger RESTFUL接口的文档在线自动生成+功能测试功能软件
     数据校验
-     */
+    swagger2
     compile group: 'io.springfox', name: 'springfox-swagger2', version: '3.0.0'
+    swagger3
+    使用springfox-boot-starter来引入swagger3
+     */
+
+    compile group: 'io.springfox', name: 'springfox-boot-starter', version: '3.0.0'
     compile group: 'io.springfox', name: 'springfox-swagger-ui', version: '3.0.0'
     compile group: 'javax.validation', name: 'validation-api', version: '2.0.1.Final'
 
+    /*
+    邮件功能 Spring mail
+     */
+    compile group: 'org.springframework', name: 'spring-context-support', version: '5.3.1'
+    compile group: 'javax.mail', name: 'mail', version: '1.4.7'
+
+    /*
+    shiro权限校验
+     */
+    compile group: 'org.apache.shiro', name: 'shiro-spring-boot-web-starter', version: '1.7.0'
+    compile group: 'org.apache.shiro', name: 'shiro-core', version: '1.7.0'
+    compile group: 'org.apache.shiro', name: 'shiro-spring', version: '1.7.0'
+    compile group: 'org.apache.shiro', name: 'shiro-web', version: '1.7.0'
+    // thymeleaf 整合 shiro
+    compile group: 'com.github.theborakompanioni', name: 'thymeleaf-extras-shiro', version: '2.0.0'
+
+    /*
+
+    aspectjweaver 支持切入点表达式等等
+     */
+    runtime group: 'org.aspectj', name: 'aspectjweaver', version: '1.9.6'
+
+
+    /*
+    oracle后续手动导包再来
+     */
+//    compile group: 'oracle', name: 'oracle-jdbc', version: '12.2.0.1'
 }
 
 test {

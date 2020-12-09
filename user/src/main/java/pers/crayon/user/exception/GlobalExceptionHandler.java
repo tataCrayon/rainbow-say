@@ -3,7 +3,7 @@ package pers.crayon.user.exception;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
-import pers.crayon.user.enums.ResponseCodeEnum;
+import pers.crayon.user.constant.enums.ResponseCodeEnum;
 import pers.crayon.user.model.dto.Result;
 
 /**
@@ -31,5 +31,11 @@ public class GlobalExceptionHandler {
     public Result UserOperateExceptionHandler(UserOperateException ex) {
         log.error("UserOperateException:{}", ex);
         return new Result(ResponseCodeEnum.USER_OPERATE_ERROR, ex.getMessage());
+    }
+
+    @ExceptionHandler(LoginException.class)
+    public Result LoginExceptionHandler(LoginException ex) {
+        log.error("LoginException:{}", ex);
+        return new Result(ResponseCodeEnum.FAIL_AUTHORIZATION, ex.getMessage());
     }
 }

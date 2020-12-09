@@ -1,4 +1,4 @@
-package pers.crayon.user.enums;
+package pers.crayon.user.constant;
 
 /**
  * @author tataCrayon

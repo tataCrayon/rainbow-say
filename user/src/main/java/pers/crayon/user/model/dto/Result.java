@@ -2,7 +2,7 @@ package pers.crayon.user.model.dto;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import pers.crayon.user.enums.ResponseCodeEnum;
+import pers.crayon.user.constant.enums.ResponseCodeEnum;
 
 /**
  * @author tataCrayon

@@ -1,6 +1,7 @@
 package pers.crayon.user.controller;
 
 import org.springframework.boot.web.servlet.error.ErrorController;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
@@ -12,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * 处理 404 不存在路径
  * </p>
  */
-//@Controller
+@Controller
 public class ErrorPageController implements ErrorController {
 
     private final static String ERROR_PATH = "/error";
@@ -24,6 +25,6 @@ public class ErrorPageController implements ErrorController {
 
     @RequestMapping(ERROR_PATH)
     public String error() {
-        return "/error/404.jsp";
+        return "404";
     }
 }

@@ -1,6 +1,8 @@
 package pers.crayon.user.controller;
 
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -8,7 +10,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 import pers.crayon.user.exception.ValidateException;
 import pers.crayon.user.model.dto.AdminDto;
 import pers.crayon.user.model.dto.Result;
@@ -27,8 +28,8 @@ import pers.crayon.user.service.RedirectService;
 // @Controller 注释返回Json内容 需要在方法添加 @ResponsetBody
 @Slf4j
 @Controller
-@RequestMapping("/")
-@Api(tags = {"页面跳转管理"})
+@RequestMapping("/home")
+@Api(tags = "PageController", description = "暂未分类的综合页面控制层，页面跳转管理")
 public class PageController extends BaseController {
 
     @Autowired
@@ -37,24 +38,20 @@ public class PageController extends BaseController {
     @Autowired
     private AdminService adminService;
 
-    @RequestMapping()
-    public String showLogin() {
-        return "login";
+    @PostMapping("/try")
+    public Result trySwagger() {
+        return success("文档测试");
     }
 
-    //http://localhost:10001/user/login
-    @PostMapping("/login")
+    @PostMapping("/homepage")
+    public String homepage() {
+        return "homepage";
+    }
+
+    @PostMapping("/admin-login")
     public String login(@RequestBody AdminDto adminDto) {
         String html = adminService.loginAdmin(adminDto);
         return html;
-    }
-
-    @RequestMapping("/index")
-    public ModelAndView index() {
-        ModelAndView view = new ModelAndView();
-        view.setViewName("loginR");
-        // 设置跳转的视图 默认映射到 src/main/resources/templates/{viewName}.html
-        return view;
     }
 
     /**
@@ -62,12 +59,14 @@ public class PageController extends BaseController {
      * @return
      * @RequestBody @RequestPram 用于 封装为 dto 和 msg的情况
      */
+    @ApiOperation(value = "validateForRedirectService", notes = "用于彩蛋页面跳转验证")
     @PostMapping("/admittance")
     public @ResponseBody
-    Result validateForRedirectService(@RequestBody Admittance admittance) throws ValidateException {
+    Result validateForRedirectService(@RequestBody
+                                      @ApiParam(name = "校验问题实例对象", value = "Admittance admittance")
+                                              Admittance admittance) throws ValidateException {
         String result = null;
         result = reDirectService.validateAdmittance(admittance);
         return success(result);
     }
-
 }
