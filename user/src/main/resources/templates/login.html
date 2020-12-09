@@ -1,5 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:shiro="http://www.thymeleaf.org/thymeleaf-extras-shiro">
+<!--
+TODO shiro 整合 thymeleaf 的用法
+https://www.bilibili.com/video/BV1NE411i7S8?p=8
+-->
 <head>
     <meta charset="UTF-8">
     <title>测试登录</title>
@@ -158,12 +162,12 @@
     </script>
 </head>
 <body>
-
+<!--method="post" -->
 <div id="stars">
     <div class="star" style="top: 0px;left: 500px;"></div>
     <div id="login">
         <h1>Login</h1>
-        <form method="post" action="http://localhost:10001/user/login">
+        <form method="get" th:action="@{/login/login}">
             <input type="text" required="required" placeholder="用户名" name="name"></input>
             <input type="password" required="required" placeholder="密码" name="password"></input>
             <button class="but" type="submit">登录</button>

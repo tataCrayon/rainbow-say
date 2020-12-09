@@ -1,8 +1,8 @@
 server:
   port: 10001
   #  配置上下文（项目路径），改变项目URL资源定位
-  servlet:
-    context-path: /roam
+#  servlet:
+#    context-path: /roam
 #  http://localhost:10001/roam/
 spring:
   # 定义匹配静态资源路径

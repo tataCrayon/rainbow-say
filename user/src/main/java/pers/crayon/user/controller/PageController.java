@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 import pers.crayon.user.exception.ValidateException;
 import pers.crayon.user.model.dto.AdminDto;
 import pers.crayon.user.model.dto.Result;
@@ -29,7 +28,7 @@ import pers.crayon.user.service.RedirectService;
 // @Controller 注释返回Json内容 需要在方法添加 @ResponsetBody
 @Slf4j
 @Controller
-@RequestMapping("/")
+@RequestMapping("/home")
 @Api(tags = "PageController", description = "暂未分类的综合页面控制层，页面跳转管理")
 public class PageController extends BaseController {
 
@@ -39,9 +38,14 @@ public class PageController extends BaseController {
     @Autowired
     private AdminService adminService;
 
-    @PostMapping("try")
+    @PostMapping("/try")
     public Result trySwagger() {
         return success("文档测试");
+    }
+
+    @PostMapping("/homepage")
+    public String homepage() {
+        return "homepage";
     }
 
     @PostMapping("/admin-login")
@@ -50,20 +54,12 @@ public class PageController extends BaseController {
         return html;
     }
 
-    @RequestMapping("/index")
-    public ModelAndView index() {
-        ModelAndView view = new ModelAndView();
-        view.setViewName("loginR");
-        // 设置跳转的视图 默认映射到 src/main/resources/templates/{viewName}.html
-        return view;
-    }
-
     /**
      * @param admittance
      * @return
      * @RequestBody @RequestPram 用于 封装为 dto 和 msg的情况
      */
-    @ApiOperation(value = "", notes = "")
+    @ApiOperation(value = "validateForRedirectService", notes = "用于彩蛋页面跳转验证")
     @PostMapping("/admittance")
     public @ResponseBody
     Result validateForRedirectService(@RequestBody
@@ -73,5 +69,4 @@ public class PageController extends BaseController {
         result = reDirectService.validateAdmittance(admittance);
         return success(result);
     }
-
 }

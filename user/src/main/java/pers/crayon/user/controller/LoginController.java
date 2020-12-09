@@ -14,7 +14,9 @@ import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.apache.shiro.subject.Subject;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 import pers.crayon.user.model.pojo.User;
 
 /**
@@ -22,9 +24,11 @@ import pers.crayon.user.model.pojo.User;
  * @version 1.0
  * @date 2020/12/8 14:50
  * @since JDK 1.8
+ * http://localhost:10001/login/login?userName=admin&password=admin
  */
 @Slf4j
 @RestController
+@RequestMapping("/login")
 @Api(tags = "LoginController", description = "登录权限限制，编写一个简单的登录方法，一个index页的查询方法，一个add方法，一个admin方法，对应不同的角色或权限拦截")
 public class LoginController {
 
@@ -41,13 +45,18 @@ public class LoginController {
                 user.getPassword()
         );
         try {
-            //进行验证，这里可以捕获异常，然后返回对应信息
+            //执行登录方法 进行验证，这里可以捕获异常，然后返回对应信息
             subject.login(usernamePasswordToken);
 //            subject.checkRole("admin");
 //            subject.checkPermissions("query", "add");
         } catch (UnknownAccountException e) {
             log.error("用户名不存在！", e);
             return "用户名不存在！";
+            /*
+            在接口传参添加 Model model，在页面使用
+            <p th:text="${msg}" style="color:#000"></p> 接受错误信息
+             model.addAttribute("msg","用户名不存在");
+             */
         } catch (AuthenticationException e) {
             log.error("账号或密码错误！", e);
             return "账号或密码错误！";
@@ -55,7 +64,20 @@ public class LoginController {
             log.error("没有权限！", e);
             return "没有权限";
         }
-        return "login success";
+        //ModelAndView view = new ModelAndView();
+        //view.setViewName("homepage");
+        return "登录成功";
+    }
+
+    /*
+    1、使用 String 类型的返回
+    2、设置跳转的视图 默认映射到 src/main/resources/templates/{viewName}.html
+     */
+    @RequestMapping("/toLogin")
+    public ModelAndView login() {
+        ModelAndView view = new ModelAndView();
+        view.setViewName("login");
+        return view;
     }
 
     @RequiresRoles("admin")
@@ -104,8 +126,4 @@ Shiro在登录认证过程中，授权失败需要抛出的异常。 Authorizati
 2.2. UnanthenticatedException:
 当尚未完成成功认证时，尝试执行授权操作时引发异常。
 
-作者：王诗林
-链接：https://www.jianshu.com/p/7f724bec3dc3
-来源：简书
-著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
  */

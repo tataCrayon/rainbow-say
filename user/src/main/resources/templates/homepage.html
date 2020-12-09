@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
->
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>没有实现页面跳转，前端展示没精力学</title>
 </head>
 <body>
-<h1>Hello World</h1>
+
+<a th:href="@{/login/admin}">login</a> | <a th:href="@{/login/add}">mailConfig</a>
+
 </body>
 </html>

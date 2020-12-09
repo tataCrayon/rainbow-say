@@ -2,6 +2,7 @@ package pers.crayon.user.model.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import pers.crayon.user.model.pojo.Role;
 
 import java.util.Set;
 
@@ -19,4 +20,9 @@ public class RoleDto {
     private String roleName;
 
     private Set<PermissionsDto> permissions;
+
+    private RoleDto(Role role) {
+        this.id = role.getId();
+        this.roleName = role.getRoleName();
+    }
 }

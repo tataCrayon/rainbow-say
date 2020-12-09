@@ -2,6 +2,7 @@ package pers.crayon.user.model.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import pers.crayon.user.model.pojo.Permissions;
 
 /**
  * @author tataCrayon
@@ -13,6 +14,10 @@ import lombok.Data;
 @AllArgsConstructor
 public class PermissionsDto {
     private Long id;
-
     private String permissionsName;
+
+    private PermissionsDto(Permissions permissions) {
+        this.id = permissions.getId();
+        this.permissionsName = permissions.getPermissionsName();
+    }
 }
