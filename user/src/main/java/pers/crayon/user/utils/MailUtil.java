@@ -6,6 +6,7 @@ import org.springframework.core.io.Resource;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.mail.javamail.MimeMessageHelper;
+import pers.crayon.user.config.MailConfig;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
@@ -37,9 +38,9 @@ public class MailUtil {
     @Value("{mail.from}")
     private static String from;
 
-    public static JavaMailSenderImpl mailSender = createMailSender(com.jykj.demo.util.ConfigInfo.mail_host, com.jykj.demo.util.ConfigInfo.mail_port, com.jykj.demo.util.ConfigInfo.mail_username,
-            com.jykj.demo.util.ConfigInfo.mail_password, com.jykj.demo.util.ConfigInfo.mail_smtp_timeout);
-    public static String mailFrom = com.jykj.demo.util.ConfigInfo.mail_from;
+    public static JavaMailSenderImpl mailSender = createMailSender(MailConfig.mail_host, MailConfig.mail_port, MailConfig.mail_username,
+            MailConfig.mail_password, MailConfig.mail_smtp_timeout);
+    public static String mailFrom = MailConfig.mail_from;
 
     private static JavaMailSenderImpl createMailSender(String host, int port, String username, String password, int timeout) {
         JavaMailSenderImpl sender = new JavaMailSenderImpl();

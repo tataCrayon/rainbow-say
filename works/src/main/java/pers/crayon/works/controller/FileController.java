@@ -1,6 +1,7 @@
-package pers.crayon.user.controller;
+package pers.crayon.works.controller;
 
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiModelProperty;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -33,6 +34,7 @@ import java.util.Map;
 @Api(tags = "FileController", description = "关于文件、资源等控制")
 public class FileController {
 
+    @ApiModelProperty(name = "defaultPath", value = "默认上传到这个路径")
     @Value("${file.uploadDefaultPath}")
     private String defaultPath;
 
@@ -42,7 +44,7 @@ public class FileController {
      *
      * @return
      */
-    @RequestMapping("file")
+    @RequestMapping("/home")
     @ApiOperation(value = "文件上传页面", notes = "返回文件上传页面，等前后端分离的时候可以不用这个接口了")
     public String file() {
         return "fileupload";
@@ -55,7 +57,8 @@ public class FileController {
         log.info("[文件类型] - [{}]", file.getContentType());
         log.info("[文件名称] - [{}]", file.getOriginalFilename());
         log.info("[文件大小] - [{}]", file.getSize());
-        // TODO 将文件写入到指定目录（具体开发中有可能是将文件写入到云存储/或者指定目录通过 Nginx 进行 gzip 压缩和反向代理，此处只是为了演示故将地址写成本地电脑指定目录）
+        // TODO 将文件写入到指定目录（具体开发中有可能是将文件写入到云存储/或者指定目录通过 Nginx 进行 gzip 压缩和反向代理，
+        //  此处只是为了演示故将地址写成本地电脑指定目录）
         file.transferTo(new File("F:\\app\\chapter16\\" + file.getOriginalFilename()));
         Map<String, String> result = new HashMap<>(16);
         result.put("contentType", file.getContentType());

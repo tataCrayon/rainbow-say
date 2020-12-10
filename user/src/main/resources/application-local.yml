@@ -85,5 +85,3 @@ springfox:
 encryption:
   MD5KEY: weige
 
-file:
-  uploadDefaultPath: D:/WeiGe

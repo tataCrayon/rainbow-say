@@ -1,4 +1,4 @@
-package pers.crayon.user.utils;
+package pers.crayon.works.utils;
 
 /**
  * @author tataCrayon

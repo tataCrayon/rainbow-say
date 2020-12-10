@@ -1,4 +1,4 @@
-package pers.crayon.user.config;
+package pers.crayon.works.config;
 
 import org.springframework.boot.web.servlet.MultipartConfigFactory;
 import org.springframework.context.annotation.Bean;

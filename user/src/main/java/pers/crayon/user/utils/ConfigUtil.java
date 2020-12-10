@@ -1,5 +1,8 @@
 package pers.crayon.user.utils;
 
+
+import pers.crayon.user.config.MailConfig;
+
 import java.io.*;
 import java.net.URISyntaxException;
 import java.util.*;
@@ -15,21 +18,21 @@ import java.util.Map.Entry;
  */
 public class ConfigUtil {
     public static String getProperty(String key) throws IOException {
-        return getProperty(com.jykj.demo.util.ConfigInfo.PROPERTIES_DEFAULT, key);
+        return getProperty(MailConfig.PROPERTIES_DEFAULT, key);
     }
 
     public static Object setProperty(String propertyName, String propertyValue) throws URISyntaxException, IOException {
-        return setProperty(com.jykj.demo.util.ConfigInfo.PROPERTIES_DEFAULT, propertyName, propertyValue);
+        return setProperty(MailConfig.PROPERTIES_DEFAULT, propertyName, propertyValue);
     }
 
     public static void setProperties(Set<Entry<String, Object>> data) throws IOException, URISyntaxException {
-        setProperties(com.jykj.demo.util.ConfigInfo.PROPERTIES_DEFAULT, data);
+        setProperties(MailConfig.PROPERTIES_DEFAULT, data);
     }
 
     // 读取Properties的全部信息
     public static Map<String, String> getAllProperties() throws IOException {
         Properties pps = new Properties();
-        InputStream in = ConfigUtil.class.getClassLoader().getResourceAsStream(com.jykj.demo.util.ConfigInfo.PROPERTIES_DEFAULT);
+        InputStream in = ConfigUtil.class.getClassLoader().getResourceAsStream(MailConfig.PROPERTIES_DEFAULT);
         pps.load(in);
         in.close();
         Enumeration<?> en = pps.propertyNames(); // 得到配置文件的名字
@@ -55,11 +58,11 @@ public class ConfigUtil {
         p.load(in);//
         in.close();
         Object o = p.setProperty(propertyName, propertyValue);//设置属性值，如属性不存在新建
-        OutputStream out = new FileOutputStream(new File(ConfigUtil.class.getClassLoader().getResource(com.jykj.demo.util.ConfigInfo.PROPERTIES_DEFAULT).toURI()));//输出流
+        OutputStream out = new FileOutputStream(new File(ConfigUtil.class.getClassLoader().getResource(MailConfig.PROPERTIES_DEFAULT).toURI()));//输出流
         p.store(out, "modify");//设置属性头，如不想设置，请把后面一个用""替换掉
         out.flush();//清空缓存，写入磁盘
         out.close();//关闭输出流
-        com.jykj.demo.util.ConfigInfo.initOrRefresh();//刷新缓存
+        MailConfig.initOrRefresh();//刷新缓存
         return o;
     }
 
@@ -71,10 +74,10 @@ public class ConfigUtil {
         for (Entry<String, Object> entry : data) { //先遍历整个 people 对象
             p.setProperty(entry.getKey(), entry.getValue().toString());//设置属性值，如属性不存在新建
         }
-        OutputStream out = new FileOutputStream(new File(ConfigUtil.class.getClassLoader().getResource(com.jykj.demo.util.ConfigInfo.PROPERTIES_DEFAULT).toURI()));//输出流
+        OutputStream out = new FileOutputStream(new File(ConfigUtil.class.getClassLoader().getResource(MailConfig.PROPERTIES_DEFAULT).toURI()));//输出流
         p.store(out, "modify");//设置属性头，如不想设置，请把后面一个用""替换掉
         out.flush();//清空缓存，写入磁盘
         out.close();//关闭输出流
-        com.jykj.demo.util.ConfigInfo.initOrRefresh();//刷新缓存
+        MailConfig.initOrRefresh();//刷新缓存
     }
 }

@@ -1,9 +1,9 @@
-package com.jykj.demo.util;
+package pers.crayon.user.config;
 
 import java.io.InputStream;
 import java.util.Properties;
 
-public class ConfigInfo {
+public class MailConfig {
     public static final String PROPERTIES_DEFAULT = "mail.properties";//类路径下的属性文件名
     //mail
     public static String mail_host;
@@ -21,7 +21,7 @@ public class ConfigInfo {
     public static void initOrRefresh() {
         Properties p = new Properties();
         try {
-            InputStream in = ConfigInfo.class.getClassLoader().getResourceAsStream(PROPERTIES_DEFAULT);
+            InputStream in = pers.crayon.user.config.MailConfig.class.getClassLoader().getResourceAsStream(PROPERTIES_DEFAULT);
             p.load(in);
             in.close();
             mail_host = p.getProperty("mail.host", "smtp.qq.com");

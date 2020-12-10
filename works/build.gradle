@@ -19,15 +19,71 @@ repositories {
 }
 
 dependencies {
-    implementation 'org.springframework.boot:spring-boot-starter-jdbc'
-    implementation 'org.springframework.boot:spring-boot-starter-validation'
+    /*
+     前端统计 thymeleaf
+     web基础依赖、健康监控、web测试
+     actuator帮助你监控和管理Spring Boot应用，比如健康检查、审计、统计和HTTP追踪
+      */
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-thymeleaf', version: '2.3.5.RELEASE'
     implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+    testImplementation('org.springframework.boot:spring-boot-starter-test') {
+        exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+    }
+
+    /*
+    数据库连接、应用
+    data rest将repository 自动输出为 Rest资源
+     */
+    implementation 'org.apache.commons:commons-pool2:2.8.0'
+
+    implementation 'mysql:mysql-connector-java'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-data-rest'
+
+    implementation 'org.springframework.boot:spring-boot-starter-data-redis'
+    implementation 'org.springframework.session:spring-session-data-redis'
+    // jdesi客户端
+    compile group: 'redis.clients', name: 'jedis', version: '3.3.0'
+//    implementation 'redis.clients.jedis:3.3.0'
+    /*
+     工具类
+     */
+    implementation 'cn.hutool:hutool-all:5.4.1'
+    compile group: 'javax.annotation', name: 'javax.annotation-api', version: '1.3.2'
+
     compileOnly 'org.projectlombok:lombok'
-    runtimeOnly 'mysql:mysql-connector-java'
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation('org.springframework.boot:spring-boot-starter-test') {
         exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
     }
+    /*
+    Jwt生成token加密登录
+    fastjson Json处理工具
+    lang3 各种 类型文件的 Utils处理包
+    httpClient连接调用第三接口
+    poi来处理excel数据
+     */
+    implementation "junit:junit:4.13"
+    implementation 'io.jsonwebtoken:jjwt:0.9.1'
+    implementation 'com.alibaba:fastjson:1.2.62'
+    implementation 'org.apache.commons:commons-lang3:3.9'
+    implementation 'org.apache.httpcomponents:httpclient:4.5.10'
+    implementation 'org.apache.poi:poi:4.1.1'
+    compile group: 'net.sdruskat', name: 'net.sdruskat.fragment.sun.misc', version: '1.0.0'
+
+    /*
+    Swagger RESTFUL接口的文档在线自动生成+功能测试功能软件
+    数据校验
+    swagger2
+    compile group: 'io.springfox', name: 'springfox-swagger2', version: '3.0.0'
+    swagger3
+    使用springfox-boot-starter来引入swagger3
+     */
+
+    compile group: 'io.springfox', name: 'springfox-boot-starter', version: '3.0.0'
+    compile group: 'io.springfox', name: 'springfox-swagger-ui', version: '3.0.0'
+    compile group: 'javax.validation', name: 'validation-api', version: '2.0.1.Final'
 }
 
 test {

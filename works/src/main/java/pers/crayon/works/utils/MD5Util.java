@@ -1,4 +1,4 @@
-package pers.crayon.user.utils;
+package pers.crayon.works.utils;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.util.DigestUtils;
