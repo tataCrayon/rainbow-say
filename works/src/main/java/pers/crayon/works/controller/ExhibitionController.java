@@ -3,9 +3,9 @@ package pers.crayon.works.controller;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import pers.crayon.works.model.dto.Result;
 
 /**
@@ -19,15 +19,16 @@ import pers.crayon.works.model.dto.Result;
  * emmmmm，这不是贴吧么
  */
 @Slf4j
-@Controller
+@RestController
 @RequestMapping("/show")
 @Api(tags = "ExhibitionController", description = "展览区接口")
 public class ExhibitionController extends BaseController {
 
-    @GetMapping
+    @GetMapping("/")
     @ApiOperation(value = "hello 测试", notes = "暂时用于测试方法是否会在swagger文档显示")
     public Result sayHello() {
         return success("hello swagger");
     }
 
+    //@RequestParam @PathVariable @RequestBody 在设置里面有 ID 使用 @PathVariable
 }

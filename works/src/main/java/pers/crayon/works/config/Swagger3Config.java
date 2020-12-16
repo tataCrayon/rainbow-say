@@ -23,7 +23,7 @@ import java.util.List;
  * @date 2020/12/7 17:06
  * @since JDK 1.8
  * <p>
- * http://localhost:10001/roam/swagger-ui/index.html
+ * http://localhost:100012/swagger-ui/index.html
  */
 @EnableOpenApi
 @Configuration
@@ -57,7 +57,7 @@ public class Swagger3Config implements WebMvcConfigurer {
                 .groupName("controllerApi")
                 .select()
                 //设置扫描的包
-                .apis(RequestHandlerSelectors.basePackage("pers.crayon.user.controller"))
+                .apis(RequestHandlerSelectors.basePackage("pers.crayon.works.controller"))
                 /*
                 设置生成规则
                 自定义注解设置不需要生成接口文档的方法
@@ -83,7 +83,7 @@ public class Swagger3Config implements WebMvcConfigurer {
                 .apiInfo(apiInfo())
                 .groupName("modelApi")
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("pers.crayon.user.model.pojo"))
+                .apis(RequestHandlerSelectors.basePackage("pers.crayon.works.model.pojo"))
                 .apis(RequestHandlerSelectors.withMethodAnnotation(ApiOperation.class))
                 .paths(PathSelectors.any())
                 .build();
