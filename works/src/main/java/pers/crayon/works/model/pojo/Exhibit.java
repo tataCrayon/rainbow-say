@@ -5,6 +5,8 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.*;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Table;
 
 /**
@@ -22,6 +24,8 @@ import javax.persistence.Table;
 @EqualsAndHashCode(callSuper = true)
 @ApiModel(value = "Exhibit", description = "展品")
 public class Exhibit extends BaseModel {
+
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @ApiModelProperty(name = "展品ID")
     private Long eid;
 

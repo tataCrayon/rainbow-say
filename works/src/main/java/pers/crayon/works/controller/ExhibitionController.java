@@ -1,12 +1,16 @@
 package pers.crayon.works.controller;
 
 import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+import pers.crayon.works.model.dto.ExhibitDto;
 import pers.crayon.works.model.dto.Result;
+import pers.crayon.works.model.pojo.Exhibit;
+import pers.crayon.works.service.ExhibitService;
+
+import static pers.crayon.works.constant.Constant.DEFAULT_PAGE_NUM;
+import static pers.crayon.works.constant.Constant.DEFAULT_PAGE_SIZE;
 
 /**
  * @author tataCrayon
@@ -23,12 +27,42 @@ import pers.crayon.works.model.dto.Result;
 @RequestMapping("/show")
 @Api(tags = "ExhibitionController", description = "展览区接口")
 public class ExhibitionController extends BaseController {
+    //@RequestParam @PathVariable @RequestBody 在设置里面有 ID 使用 @PathVariable
 
-    @GetMapping("/")
-    @ApiOperation(value = "hello 测试", notes = "暂时用于测试方法是否会在swagger文档显示")
-    public Result sayHello() {
-        return success("hello swagger");
+    @Autowired
+    private ExhibitService service;
+
+    @PostMapping("/add")
+    public Result addExhibit(@RequestBody ExhibitDto dto) {
+        Exhibit exhibit = new Exhibit();
+        exhibit.setName(dto.getName());
+        exhibit.setUrl(dto.getUrl());
+        exhibit.setDes(dto.getDes());
+        service.saveExhibit(exhibit);
+        return success();
     }
 
-    //@RequestParam @PathVariable @RequestBody 在设置里面有 ID 使用 @PathVariable
+    @PostMapping("/update")
+    public Result updateExhibit(@RequestBody ExhibitDto dto) {
+        service.updateExhibit(dto);
+        return success();
+    }
+
+    @GetMapping("/list")
+    public Result listExhibit(@RequestParam(required = false, defaultValue = DEFAULT_PAGE_NUM) int pageNum,
+                              @RequestParam(required = false, defaultValue = DEFAULT_PAGE_SIZE) int pageSize) {
+        return success(service.listExhibit(pageNum, pageSize));
+    }
+
+    @GetMapping("/del/{eid}")
+    public Result delExhibit(@PathVariable("eid") Long eid) {
+        service.delExhibit(eid);
+        return success();
+    }
+
+    @GetMapping("/search")
+    public Result searchExhibit(@RequestParam String name) {
+        service.getExhibit(name);
+        return success();
+    }
 }

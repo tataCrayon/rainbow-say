@@ -1,5 +1,7 @@
 package pers.crayon.works.constant;
 
+import java.time.format.DateTimeFormatter;
+
 /**
  * @author tataCrayon
  * @version 1.0
@@ -8,6 +10,13 @@ package pers.crayon.works.constant;
  * <p>
  * 常量类接口，定义全局变量
  */
-interface Constant {
+public interface Constant {
+    /**
+     * 系统序列化反序列化的时间格式
+     */
+    DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ISO_LOCAL_DATE_TIME;
 
+    String DEFAULT_PAGE_NUM = "0";
+
+    String DEFAULT_PAGE_SIZE = "10";
 }

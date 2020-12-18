@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import pers.crayon.user.model.dto.Result;
-import pers.crayon.user.service.serviceimpl.AdmittanceServiceImpl;
+import pers.crayon.user.service.AdmittanceService;
 
 /**
  * @author tataCrayon
@@ -27,7 +27,7 @@ import pers.crayon.user.service.serviceimpl.AdmittanceServiceImpl;
 public class AdminController extends BaseController {
 
     @Autowired
-    private AdmittanceServiceImpl admittanceServiceImpl;
+    private AdmittanceService admittanceService;
 
     @GetMapping("/set-online")
     @ApiOperation(value = "设置在线", notes = "设置在线情况")
